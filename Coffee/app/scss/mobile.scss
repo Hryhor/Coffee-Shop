@@ -1,0 +1,135 @@
+@import "breackpoints";
+@import "base.scss";
+
+/*mobile nav window*/
+.mobile-nav-window {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #EEEFF1;
+  color: #fff;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 15px;
+  text-align: center;
+
+  &.active {
+    display: flex;
+  }
+  .mobile-info {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .mobile-logo {
+    left:  0px;
+  }
+  
+  .mobile-menu {
+    font-size: 20px;
+    line-height: 125%;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 200px;
+    ul {
+      margin-bottom: 60px;
+      a {
+        font-weight: 600;
+        color:  #1B1B1D;
+      }
+    }
+      .mobile-btn__buy {
+        padding: 10px 20px;
+        margin-right: 5px;
+      }
+      .mobile-btn__cart {
+        background-color: #fff;
+        border-radius: 100%;
+        padding: 10px 14px;
+        img {
+          padding-top: 4px;
+        }
+      }
+  }
+  @include breackpoint(sm) {
+    .mobile-menu  {
+      margin-top: 60px;
+    }
+  }
+  .mobile-menu li + li {
+    margin-top: 60px;
+  }
+}
+
+/*mobile nav button*/
+.mobile-nav-button {
+    display: none;
+    cursor: pointer;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  
+    /*nav icon styles*/
+    position: relative;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 1000;
+
+    .mobile-nav-button__icon {
+        display: block;
+        position: absolute;
+        width: 40px;
+        height: 5px;
+        background-color: #000;
+        margin-left: 20px;
+        z-index: 1000;
+
+        &::after,
+        &:before {
+          position: absolute;
+          content: ' ';
+          width: 40px;
+          height: 5px;
+          background-color: #000;
+          transition: transform 0.15s ease-in, top 0.15s ease-in 0.15s;
+        }
+
+        &:before {
+            left: 0;
+            top: -10px;
+          }
+          
+          &:after {
+            left: 0;
+            top: 10px;
+          }
+          &.active {
+            background: transparent;
+          }
+          &.active::before {
+            transform: rotate(45deg);
+            top: 0;
+            /*трансофрмация при открывании*/
+            transition: top 0.15s linear, transform 0.15s ease-in 0.15s;
+          }
+          &.active::after {
+            transform: rotate(-45deg);
+            top: 0;
+            transition: top 0.15s linear, transform 0.15s ease-in 0.15s;
+          }
+      }
+}
+
+@include breackpoint (lg) {
+    .mobile-nav-button {
+        display: flex;
+    }
+}
